@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -7,99 +6,121 @@ public class MathOperation
   public static void main(String[] args)
   {
     Scanner keyboard = new Scanner(System.in);
-    int input = 0;
+    int count = 0;
 
     while (true){
-      try{
-        System.out.println("Write an integer: ");
-        input = keyboard.nextInt();
-
-        break;
+      System.out.println("Write how many numbers do you want to add: ");
+      try {
+        count = keyboard.nextInt();
+        keyboard.nextLine();
+        if (count>=2){
+          break;
+        }
+        System.out.println("At least 2 numbers!");
       }
-      catch (InputMismatchException e){
-        System.out.println("Integer is required!");
+      catch (Exception e){
+        System.out.println("Integer required!");
         keyboard.nextLine();
       }
     }
 
 
-    int[] arrayOfNumbers = new int[input];
-    int number = 0;
+    int[] nums = new int[count];
 
-
-    for (int i = 0; i < input; i++)
+    for (int i = 0; i < count; i++)
     {
-      System.out.println("Write number at " + i + " position");
       while (true){
         try {
-          arrayOfNumbers[i] = keyboard.nextInt();
+          System.out.println("Add number on " + i + " index:");
+          nums[i] = keyboard.nextInt();
           keyboard.nextLine();
           break;
         }
-        catch(InputMismatchException e){
-          System.out.println("Write only integer!");
+        catch (InputMismatchException e){
+          System.out.println("Integer required!");
           keyboard.nextLine();
         }
       }
+    }
+    for (int n : nums){
+      System.out.println(n + "");
+    }
 
-    }
-    System.out.println("Choose 2 numbers from this list: ");
-    for (int i = 0; i < arrayOfNumbers.length; i++)
-    {
-      System.out.print(arrayOfNumbers[i] + " ");
-    }
 
     int numberOne = 0;
-    int numberTwo = 0;
+    while (true){
+      System.out.println("Pick your number from list!");
+      try{
+        numberOne = keyboard.nextInt();
+        keyboard.nextLine();
 
+        boolean exist = false;
 
-    while (true) {
-      try {
-        int temp = keyboard.nextInt();
-        boolean found = false;
-
-        for (int i = 0; i < arrayOfNumbers.length; i++) {
-          if (arrayOfNumbers[i] == temp) {
-            numberOne = arrayOfNumbers[i];
-            found = true;
+        for (int n : nums){
+          if (numberOne == n){
+            exist = true;
             break;
           }
         }
-
-        if (!found) {
-          throw new Exception("Not in the list!");
+        if (exist){
+          break;
         }
-
-        break; // úspech -> skonči while
-      } catch (Exception e) {
-        System.out.println("Number not in the list!");
+        System.out.println("Not in the list!");
+      }
+      catch (InputMismatchException e){
+        System.out.println("Only integer required!");
         keyboard.nextLine();
       }
     }
 
-
-
-
-
-
-    while (true)
-    {
-      try
-      {
+    int numberTwo= 0;
+    while (true){
+      System.out.println("Pick your number from list!");
+      try{
         numberTwo = keyboard.nextInt();
-        for (int i = 0; i < arrayOfNumbers.length; i++)
-        {
-          if (numberTwo == arrayOfNumbers[i])
-          {
+        keyboard.nextLine();
+
+        boolean exist = false;
+
+        for (int n : nums){
+          if (numberTwo == n){
+            exist = true;
             break;
           }
         }
-
+        if (exist){
+          break;
+        }
+        System.out.println("Not in the list!");
       }
-      catch (Exception e)
-      {
-        System.out.println("Number not in the list!");
+      catch (InputMismatchException e){
+        System.out.println("Only integer required!");
         keyboard.nextLine();
+      }
+    }
+
+    String mathOperation = "";
+    while (true){
+      System.out.println("Which mathematical operation do you want to perform on those 2 numbers? (add, subtract, divide, multiply)");
+      mathOperation = keyboard.nextLine();
+
+      try{
+        switch (mathOperation.toLowerCase().trim()){
+          case "add" -> System.out.println(numberOne+numberTwo);
+          case "subtract" -> System.out.println(numberOne-numberTwo);
+          case "divide" -> System.out.println(numberOne/numberTwo);
+          case "multiply" -> System.out.println(numberOne*numberTwo);
+          default -> {
+            System.out.println("Inavalid input!");
+            continue;
+          }
+        }
+        break;
+      }
+
+      catch (ArithmeticException e){
+        System.out.println("You cant divide by 0!");
+
       }
     }
 
