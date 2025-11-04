@@ -1,46 +1,36 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class Main
-{
-  public static void main(String[] args)
-  {
-
-    String filename = "students.txt";
-    File file = new File(filename);
-
-    if (file.getParentFile() == null){
-      file = new File("outputs", filename);
-    }
-
-
+public class Main {
+  public static void main(String[] args) {
+    File file = new File("outputs/students.txt");
     StudentList studentList = new StudentList();
-    try (Scanner in = new Scanner(file)){
-      while (in.hasNextLine()){
-        String line = in.nextLine();
-        String[] array = line.split(",");
 
-        int group = Integer.parseInt(array[0]);
-        int study = Integer.parseInt(array[1]);
-        String name = array[2];
-        String nat = array[3];
-        int day   = Integer.parseInt(array[4]);
-        int month = Integer.parseInt(array[5]);
-        int year  = Integer.parseInt(array[6]);
-        if (year<100){
-          year += 1900;
-        }
+    try (Scanner in = new Scanner(file, "UTF-8");){
+      while (in.hasNextLine()) {
+        String line = in.nextLine().trim();
+        if (line.isEmpty()) continue;
+        String[] a = line.split("\\s*,\\s*");
+        if (a.length < 7) continue;
+
+        int group = Integer.parseInt(a[0]);
+        int study = Integer.parseInt(a[1]);
+        String name = a[2];
+        String nat  = a[3];
+        int day     = Integer.parseInt(a[4]);
+        int month   = Integer.parseInt(a[5]);
+        int year    = Integer.parseInt(a[6]);
+        if (year < 100) year += 1900;
 
         Student s = new Student(name, study, nat, group, new MyDate(day, month, year));
         studentList.add(s);
       }
       System.out.println(studentList);
-
-
-    }
-    catch (FileNotFoundException e){
-      System.out.println("File not found " + e.getMessage());
+    } catch (FileNotFoundException e) {
+      System.out.println("File not found: " + file.getAbsolutePath());
     }
   }
 }
