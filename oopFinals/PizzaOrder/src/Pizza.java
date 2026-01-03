@@ -13,6 +13,12 @@ public class Pizza
     this.numberOfToppings = 0;
     this.toppings = new Topping[MAX_NUMBER_OF_TOPPINGS];
   }
+
+  public String getName()
+  {
+    return name;
+  }
+
   public int getNumberOfToppings(){
     return numberOfToppings;
   }
@@ -44,5 +50,12 @@ public class Pizza
     toppings[numberOfToppings-1] = null;
     numberOfToppings--;
   }
-
+  public double getTotalPrice(){
+    double count = initialPrice;
+    for (int i = 0; i < numberOfToppings; i++)
+    {
+      count += toppings[i].getPrice();
+    }
+    return count;
+  }
 }

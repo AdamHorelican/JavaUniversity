@@ -2,7 +2,7 @@ public abstract class CarDifferent
 {
   private String licenseNo;
   private double price;
-  private Customer3 rentedTo;
+  private Customer4 rentedTo;
 
 
   public CarDifferent(String licenseNo, double price){
@@ -25,10 +25,10 @@ public abstract class CarDifferent
 
   public abstract String getType();
 
-  public Customer3 getRentedTo(){
+  public Customer4 getRentedTo(){
     return rentedTo;
   }
-  public void setRentedTo(Customer3 customer){
+  public void setRentedTo(Customer4 customer){
     this.rentedTo = customer;
   }
   public boolean isAvailable(){
