@@ -47,4 +47,54 @@ public class Kennel
     }
     return petss;
   }
+  public boolean isAPureDogKennel(){
+    for (int i = 0; i < pets.size(); i++)
+    {
+      if (!(pets.get(i) instanceof Dog)){
+        return false;
+      }
+    }
+    return true;
+  }
+  public Cat getAChippedCat(){
+    for (int i = 0; i < pets.size(); i++)
+    {
+      if(pets.get(i) instanceof Cat && ((Cat) pets.get(i)).isChipped()){
+        Cat ourCat = (Cat) pets.get(i);
+        return ourCat;
+      }
+    }
+    return null;
+  }
+  public ArrayList<String> getIdsBySpecies(String spieces){
+    ArrayList<String> ourString = new ArrayList<>();
+    for (int i = 0; i < pets.size(); i++)
+    {
+      if (pets.get(i).getSpecies().equals(spieces)){
+        ourString.add(pets.get(i).getId());
+      }
+
+    }
+    return ourString;
+  }
+  public Dog[] getDogsByBirthYear(int year){
+    int count = 0;
+    for (int i = 0; i < pets.size(); i++)
+    {
+      if (pets.get(i) instanceof Dog && pets.get(i).getBirthday().getYear() == year){
+        count++;
+      }
+    }
+    Dog[] dogs = new Dog[count];
+    count = 0;
+    for (int i = 0; i < pets.size(); i++)
+    {
+      if (pets.get(i) instanceof Dog && pets.get(i).getBirthday().getYear() == year){
+        Dog dg = (Dog) pets.get(i);
+        dogs[count] = dg;
+        count++;
+      }
+    }
+    return dogs;
+  }
 }

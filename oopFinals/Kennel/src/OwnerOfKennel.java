@@ -4,7 +4,7 @@ public class OwnerOfKennel
   private Date8 birthday;
 
   public OwnerOfKennel(Date8 birthday, String name){
-    this.birthday = birthday;
+    this.birthday = birthday.copy();
     this.name = name;
   }
 
@@ -15,7 +15,7 @@ public class OwnerOfKennel
 
   public Date8 getBirthday()
   {
-    return birthday;
+    return birthday.copy();
   }
 
 }
