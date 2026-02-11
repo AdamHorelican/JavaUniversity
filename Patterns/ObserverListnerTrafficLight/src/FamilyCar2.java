@@ -1,4 +1,7 @@
-public class FamilyCar2
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class FamilyCar2 implements PropertyChangeListener
 {
   private int id;
 
@@ -26,5 +29,10 @@ public class FamilyCar2
     {
       System.out.println("Traffic signal broken...");
     }
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    setLight((String) evt.getNewValue());
   }
 }

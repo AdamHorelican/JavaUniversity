@@ -9,10 +9,10 @@ public class TrafficLightMain
     SleepyDriver sleepyDriver1 = new SleepyDriver(1);
     Pedestrian pedestrian1 = new Pedestrian(1);
 
-    trafficLight.addCar(car1);
-    trafficLight.addTaxi(taxi1);
-    trafficLight.addSleepyDriver(sleepyDriver1);
-    trafficLight.addPedestrian(pedestrian1);
+    trafficLight.addPropertyChangeListener(car1);
+    trafficLight.addPropertyChangeListener(taxi1);
+    trafficLight.addPropertyChangeListener(sleepyDriver1);
+    trafficLight.addPropertyChangeListener(pedestrian1);
 
     try
     {

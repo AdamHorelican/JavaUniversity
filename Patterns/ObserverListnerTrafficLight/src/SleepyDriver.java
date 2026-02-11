@@ -1,4 +1,7 @@
-public class SleepyDriver
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class SleepyDriver implements PropertyChangeListener
 {
   private int id;
 
@@ -30,5 +33,10 @@ public class SleepyDriver
     {
       System.out.println("Traffic signal broken...");
     }
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    setLight((String) evt.getNewValue());
   }
 }

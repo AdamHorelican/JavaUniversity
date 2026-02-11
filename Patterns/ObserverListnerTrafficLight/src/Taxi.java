@@ -1,4 +1,7 @@
-public class Taxi
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class Taxi implements PropertyChangeListener
 {
   private int id;
 
@@ -27,5 +30,10 @@ public class Taxi
     {
       System.out.println("Traffic signal broken...");
     }
+  }
+
+  @Override public void propertyChange(PropertyChangeEvent evt)
+  {
+    setLight((String) evt.getNewValue());
   }
 }
