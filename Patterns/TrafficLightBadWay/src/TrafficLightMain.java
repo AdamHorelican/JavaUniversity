@@ -1,0 +1,26 @@
+public class TrafficLightMain
+{
+  public static void main(String[] args)
+  {
+    TrafficLight trafficLight = new TrafficLight();
+
+    FamilyCar2 car1 = new FamilyCar2(1);
+    Taxi taxi1 = new Taxi(1);
+    SleepyDriver sleepyDriver1 = new SleepyDriver(1);
+    Pedestrian pedestrian1 = new Pedestrian(1);
+
+    trafficLight.addCar(car1);
+    trafficLight.addTaxi(taxi1);
+    trafficLight.addSleepyDriver(sleepyDriver1);
+    trafficLight.addPedestrian(pedestrian1);
+
+    try
+    {
+      trafficLight.start();
+    }
+    catch (InterruptedException e)
+    {
+      e.printStackTrace();
+    }
+  }
+}
