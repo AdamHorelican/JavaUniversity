@@ -2,22 +2,22 @@ public class Radiator
 {
   private RadiatorState currentState;
 
-  private Radiator(){
+  public Radiator(){
     currentState = new OffState();
   }
 
 
   public void turnUp(){
-
+    currentState.turnUp(this);
   }
 
   public void turnDown(){
-
+    currentState.turnUp(this);
   }
   public int getPower(){
-
+    return currentState.getPower();
   }
-  private void setPowerState(){
-
+   void setPowerState(RadiatorState newState){
+    currentState = newState;
   }
 }
