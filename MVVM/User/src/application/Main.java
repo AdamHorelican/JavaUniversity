@@ -20,25 +20,11 @@ public class Main extends Application
   @Override
   public void start(Stage primaryStage) throws Exception
   {
-    Model model = new Model();
-    CreateUserViewModel createUserViewModel = new CreateUserViewModel(model);
-    UserListViewModel userListViewModel = new UserListViewModel(model);
+    ModelFactory modelFactory = new ModelFactory();
+    ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
+    ViewFactory viewFactory = new ViewFactory(viewModelFactory, primaryStage);
 
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/CreateUserView.fxml"));
-    fxmlLoader.setControllerFactory(controllerClass -> new CreateUserView(createUserViewModel));
-
-    Scene createUserScene = new Scene(fxmlLoader.load());
-    primaryStage.setTitle("Create model.User");
-    primaryStage.setScene(createUserScene);
-    primaryStage.show();
-
-    fxmlLoader = new FXMLLoader(getClass().getResource("/view/UserListView.fxml"));
-    fxmlLoader.setControllerFactory(controllerClass -> new UserListView(userListViewModel));
-
-    Scene userListScene = new Scene(fxmlLoader.load());
-    Stage secondaryStage = new Stage();
-    secondaryStage.setTitle("View Users");
-    secondaryStage.setScene(userListScene);
-    secondaryStage.show();
+    viewFactory.getCreateUserView();
+    viewFactory.getUserListView();
   }
 }
