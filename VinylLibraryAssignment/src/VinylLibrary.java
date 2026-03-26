@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class VinylLibrary
 {
   private List<Vinyl> vinyls;
@@ -26,7 +27,7 @@ public class VinylLibrary
     vinyl.borrow(userId);
   }
 
-  public void reserverVinyl(Vinyl vinyl, String userId){
+  public void reserveVinyl(Vinyl vinyl, String userId){
     vinyl.reserve(userId);
   }
   public void returnVinyl(Vinyl vinyl){

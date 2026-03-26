@@ -8,7 +8,6 @@
             fx:controller="VinylController"
             style="-fx-background-color: #1a1a2e;">
 
-    <!-- TOP - Title bar -->
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: #16213e; -fx-padding: 15;">
             <Label text="🎵 Vinyl Library"
