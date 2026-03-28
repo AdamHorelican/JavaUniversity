@@ -54,7 +54,7 @@ public class VinylViewModel
     refresh();
   }
   public void returnVinyl(Vinyl vinyl){
-    vinylLibrary.returnVinyl(vinyl);
+    vinylLibrary.returnVinyl(vinyl, userIdProperty.get());
     refresh();
 }
   public void addVinyl(){

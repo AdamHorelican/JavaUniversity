@@ -10,12 +10,11 @@
 
     <top>
         <HBox alignment="CENTER" style="-fx-background-color: #16213e; -fx-padding: 15;">
-            <Label text="🎵 Vinyl Library"
+            <Label text="Vinyl Library"
                    style="-fx-text-fill: #e94560; -fx-font-size: 24; -fx-font-weight: bold;"/>
         </HBox>
     </top>
 
-    <!-- CENTER - Table -->
     <center>
         <TableView fx:id="vinylTable"
                    style="-fx-background-color: #16213e;"
@@ -32,11 +31,9 @@
         </TableView>
     </center>
 
-    <!-- BOTTOM - Controls -->
     <bottom>
         <VBox style="-fx-background-color: #16213e; -fx-padding: 15; -fx-spacing: 10;">
 
-            <!-- UserId row -->
             <HBox alignment="CENTER_LEFT" spacing="10">
                 <Label text="User ID:"
                        style="-fx-text-fill: #a8a8b3; -fx-font-size: 13;"/>
@@ -46,7 +43,6 @@
                            style="-fx-background-color: #0f3460; -fx-text-fill: white; -fx-prompt-text-fill: #a8a8b3; -fx-background-radius: 5;"/>
             </HBox>
 
-            <!-- Action buttons -->
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <Button fx:id="reserveButton" text="Reserve"
                         onAction="#onReserveClicked"
@@ -62,7 +58,6 @@
                         style="-fx-background-color: #e94560; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand; -fx-pref-width: 100;"/>
             </HBox>
 
-            <!-- Add Vinyl row -->
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <TextField fx:id="titleField"
                            promptText="Title..."

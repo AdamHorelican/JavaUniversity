@@ -40,20 +40,44 @@ public class VinylController {
       yearField.textProperty().bindBidirectional(
           viewModel.yearProperty(), new NumberStringConverter());
       userIdField.textProperty().bindBidirectional(viewModel.userIdProperty());
+
+
     }
 
     @FXML
-    public void onReserveClicked() {}
+    public void onReserveClicked() {
+      Vinyl selected = vinylTable.getSelectionModel().getSelectedItem();
+      if (selected != null && !viewModel.userIdProperty().get().isEmpty()){
+        viewModel.reserve(selected);
+      }
+    }
 
     @FXML
-    public void onBorrowClicked() {}
+    public void onBorrowClicked() {
+      Vinyl selected = vinylTable.getSelectionModel().getSelectedItem();
+      if (selected != null && !viewModel.userIdProperty().get().isEmpty()){
+        viewModel.borrow(selected);
+      }
+    }
 
     @FXML
-    public void onReturnClicked() {}
+    public void onReturnClicked() {
+      Vinyl selected = vinylTable.getSelectionModel().getSelectedItem();
+      if (selected != null && !viewModel.userIdProperty().get().isEmpty()){
+        viewModel.returnVinyl(selected);
+      }
+    }
 
     @FXML
-    public void onRemoveClicked() {}
+    public void onRemoveClicked() {
+      Vinyl selected = vinylTable.getSelectionModel().getSelectedItem();
+      if (selected != null && !viewModel.userIdProperty().get().isEmpty()){
+        viewModel.remove(selected);
+      }
+    }
 
     @FXML
-    public void onAddVinylClicked() {}
+    public void onAddVinylClicked() {
+        viewModel.addVinyl();
+    }
   }

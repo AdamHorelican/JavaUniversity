@@ -12,7 +12,7 @@ public class AvailableState implements VinylState
     vinyl.setCurrentState(new BorrowState());
   }
 
-  @Override public void returnVinyl(Vinyl vinyl)
+  @Override public void returnVinyl(Vinyl vinyl, String userId)
   {
     //
   }

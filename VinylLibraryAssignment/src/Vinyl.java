@@ -24,8 +24,8 @@ public class Vinyl
   public void borrow(String userId){
     currentState.borrow(this, userId);
   }
-  public void returnVinyl(){
-    currentState.returnVinyl(this);
+  public void returnVinyl(String userId){
+    currentState.returnVinyl(this, userId);
   }
   public void remove(){
     currentState.remove(this);

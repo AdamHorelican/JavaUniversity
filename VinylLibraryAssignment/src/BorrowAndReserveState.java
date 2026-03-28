@@ -10,10 +10,15 @@ public class BorrowAndReserveState implements VinylState
     System.out.println("Cant be borrowed");
   }
 
-  @Override public void returnVinyl(Vinyl vinyl)
+  @Override public void returnVinyl(Vinyl vinyl, String userId)
   {
-    vinyl.setBorrowedBy(null);
-    vinyl.setCurrentState(new ReserveState());
+    if (vinyl.getBorrowedBy().equals(userId)){
+      vinyl.setBorrowedBy(null);
+      vinyl.setCurrentState(new ReserveState());
+    }
+    else {
+      System.out.println("Same Id has to return it.");
+    }
   }
 
   @Override public void remove(Vinyl vinyl)

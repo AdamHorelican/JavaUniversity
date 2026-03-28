@@ -17,7 +17,7 @@ public class ReserveState implements VinylState
     }
   }
 
-  @Override public void returnVinyl(Vinyl vinyl)
+  @Override public void returnVinyl(Vinyl vinyl, String userId)
   {
     System.out.println("Cant be removed");
   }
