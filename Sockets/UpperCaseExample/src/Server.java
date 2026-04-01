@@ -17,14 +17,30 @@ public class Server
         Socket socket = welcomeSocket.accept();
         System.out.println("Client connected");
 
-        ObjectInputStream inFromClient = new ObjectInputStream(socket.getInputStream());
-        String o = (String) inFromClient.readObject();
-        System.out.println("Received: " + o);
-
-        String answer = o.toUpperCase();
-
         ObjectOutputStream outToClient = new ObjectOutputStream(socket.getOutputStream());
-        outToClient.writeObject(answer);
+        outToClient.flush();
+        ObjectInputStream inFromClient = new ObjectInputStream(socket.getInputStream());
+
+
+        while (true){
+          outToClient.writeObject("LowerCase or UpperCase?");
+
+          String answerFromClient = (String) inFromClient.readObject();
+
+          if (answerFromClient.equals("STOP")){
+            socket.close();
+            break;
+          }
+          if ("uppercase".equals(answerFromClient)){
+            String o = (String) inFromClient.readObject();
+            outToClient.writeObject(o.toUpperCase());
+          }
+
+          if ("lowercase".equals(answerFromClient)){
+            String o = (String) inFromClient.readObject();
+            outToClient.writeObject(o.toLowerCase());
+          }
+        }
       }
     }
     catch (IOException | ClassNotFoundException e)
