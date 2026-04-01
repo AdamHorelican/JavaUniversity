@@ -18,32 +18,37 @@ public class VinylLibrary
     support.addPropertyChangeListener(listener);
   }
 
-  public void addVinyl(String title, String artist, int releaseYear){
+  public synchronized void addVinyl(String title, String artist, int releaseYear){
     vinyls.add(new Vinyl(title, artist, releaseYear));
     System.out.println("Vinyl added: title:" + title + " artist: " + artist + " releaseYear: " + releaseYear);
     support.firePropertyChange("vinyls", null, vinyls);
   }
 
-  public void removeVinyl(Vinyl vinyl){
+  public synchronized void removeVinyl(Vinyl vinyl){
     if (vinyl.getCurrentState() instanceof AvailableState){
       vinyls.remove(vinyl);
+      support.firePropertyChange("vinyls", null, vinyls);
     }
     else{
       vinyl.remove();
+      support.firePropertyChange("vinyls", null, vinyls);
     }
   }
-  public void borrowVinyl(Vinyl vinyl, String userId){
+  public synchronized  void borrowVinyl(Vinyl vinyl, String userId){
     vinyl.borrow(userId);
+    support.firePropertyChange("vinyls", null, vinyls);
   }
 
-  public void reserveVinyl(Vinyl vinyl, String userId){
+  public synchronized void reserveVinyl(Vinyl vinyl, String userId){
     vinyl.reserve(userId);
+    support.firePropertyChange("vinyls", null, vinyls);
   }
-  public void returnVinyl(Vinyl vinyl, String userId){
+  public synchronized void returnVinyl(Vinyl vinyl, String userId){
     vinyl.returnVinyl(userId);
     if (vinyl.getMarkedFlag() && vinyl.getCurrentState() instanceof AvailableState){
       vinyls.remove(vinyl);
     }
+    support.firePropertyChange("vinyls", null, vinyls);
 
   }
   public List<Vinyl> getVinyls()

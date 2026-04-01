@@ -20,6 +20,11 @@ public class Main extends Application {
     stage.setTitle("Vinyl Library");
     stage.setScene(scene);
     stage.show();
+
+    VinylSimulator simulator = new VinylSimulator(vinylLibrary);
+    Thread thread = new Thread(simulator);
+    thread.setDaemon(true);
+    thread.start();
   }
 
   public static void main(String[] args) {

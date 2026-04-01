@@ -1,4 +1,5 @@
 
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -6,7 +7,10 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class VinylViewModel
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class VinylViewModel implements PropertyChangeListener
 {
   private VinylLibrary vinylLibrary;
   private ObservableList<Vinyl> vinyls;
@@ -20,6 +24,7 @@ public class VinylViewModel
   public VinylViewModel(VinylLibrary vinylLibrary)
   {
     this.vinylLibrary = vinylLibrary;
+    vinylLibrary.addPropertyChangeListener(this);
     this.vinyls = FXCollections.observableArrayList();
     refresh();
   }
@@ -27,6 +32,11 @@ public class VinylViewModel
   public ObservableList<Vinyl> getVinyls()
   {
     return vinyls;
+  }
+
+  @Override
+  public void propertyChange(PropertyChangeEvent evt) {
+    Platform.runLater(this::refresh);
   }
 
   public void refresh()
@@ -43,25 +53,20 @@ public class VinylViewModel
 
   public void reserve(Vinyl vinyl) {
     vinylLibrary.reserveVinyl(vinyl, userIdProperty.get());
-    refresh();
   }
   public void remove(Vinyl vinyl){
     vinylLibrary.removeVinyl(vinyl);
-    refresh();
   }
   public void borrow(Vinyl vinyl){
     vinylLibrary.borrowVinyl(vinyl, userIdProperty.get());
-    refresh();
   }
   public void returnVinyl(Vinyl vinyl){
     vinylLibrary.returnVinyl(vinyl, userIdProperty.get());
-    refresh();
 }
   public void addVinyl(){
     String title = titleProperty.get();
     String artist = artistProperty.get();
     int releaseYear = yearProperty.get();
     vinylLibrary.addVinyl(title, artist, releaseYear);
-    refresh();
   }
 }
